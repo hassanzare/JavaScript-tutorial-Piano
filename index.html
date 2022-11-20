@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Piano</title>
+  </head>
+  <body>
+    <div class="piano">
+      <div class="piano__body">
+        <div class="piano__speaker"></div>
+        <div class="piano__interface">
+          <div class="piano__controls">
+            <h4 class="piano__heading">PIANO</h4>
+            <label
+              ><input
+                type="radio"
+                class="piano__control__option"
+                name="control"
+                value="letterNotes"
+                checked
+              />letterNotes</label
+            >
+            <label
+              ><input
+                type="radio"
+                class="piano__control__option"
+                name="control"
+                value="keyboard"
+              />control</label
+            ><label
+              ><input
+                type="radio"
+                class="piano__control__option"
+                name="control"
+                value="none"
+              />none</label
+            >
+          </div>
+          <div class="piano__autoplay">
+            <h4 class="piano__heading">AUTOPLAY</h4>
+            <select class="piano__song-list">
+              <option value="1">Jingle Bells</option>
+              <option value="2">Happy Birthday</option>
+            </select>
+            <label
+              >Tempo:
+              <select>
+                <option value="1">Slow</option>
+                <option value="2">Normal</option>
+                <option value="3">Fast</option>
+              </select>
+            </label>
+
+            <button class="piano__play-btn">play</button>
+          </div>
+        </div>
+        <div class="piano__speaker"></div>
+      </div>
+      <div class="piano__keyboard">
+        <button class="piano__key piano__key--white">C1</button>
+        <div class="empty-space">
+          <button class="piano__key piano__key--black">C#1</button>
+        </div>
+        <button class="piano__key piano__key--white">D1</button>
+        <div class="empty-space">
+          <button class="piano__key piano__key--black">D#1</button>
+        </div>
+        <button class="piano__key piano__key--white">E</button>
+        <button class="piano__key piano__key--white">F</button>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
