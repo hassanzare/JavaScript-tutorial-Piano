@@ -7,7 +7,6 @@ body {
   align-items: center;
   font-family: helvetica, Arial, sans-serif;
 }
-
 .piano {
   width: 1300px;
   height: 600px;
@@ -18,7 +17,6 @@ body {
   align-items: center;
   padding: 5px;
 }
-
 .piano__body {
   width: 100%;
   height: 100%;
@@ -70,9 +68,12 @@ select {
   background-color: #fff;
   border: 1px solid #000;
   box-sizing: border-box;
+  flex-grow: 1;
   text-align: center;
   border-radius: 0 0 8px 8px;
-  flex-grow: 1;
+}
+.empty-space {
+  position: relative;
 }
 
 .piano__key--black {
@@ -83,10 +84,11 @@ select {
   top: 0;
   left: -15px;
 }
-.empty-space {
-  position: relative;
-}
 
 .piano__key--white {
-  padding-top: 130px;
+  padding-top: 180px;
+}
+
+.piano__key--playing {
+  background: #74b9ff;
 }
