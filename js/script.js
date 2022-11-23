@@ -3,6 +3,8 @@ const controls = document.querySelectorAll(".piano__control__option");
 // console.log(controls);
 // console.log(Keyboard);
 let keys = [];
+let tempoSelect = document.querySelector(".piano__tempo");
+let songSelect = document.querySelector(".piano__song-list");
 const pianoNotes = ["C", "D", "E", "F", "G", "A", "B"];
 const keyboardMap = [
   "1",
@@ -41,6 +43,60 @@ const keyboardMap = [
   "B",
   "N",
 ];
+const playBtn = document.querySelector(".piano__play-btn");
+
+const jingleBells = `B3,,B3,,B3,,,,B3,,B3,,B3,,,,
+                       B3,,D4,,G3,,A3,B3,,,,,,
+                       C4,,C4,,C4,,,,C4,C4,,B3,,B3,,,,
+                       B3,B3,B3,,A3,,A3,,B3,,A3,,,,D4`;
+
+const happyBirthday = `G4,G4,A4,,G4,,C5,,B4,,,,
+G4,G4,A4,,G4,,D5,,C5,,,,
+G4,G4,G5,,E5,,C5,,B4,,A4,,
+F5,F5,E5,,C5,,D5,,C5,,,,`;
+
+const playSong = (notesString, tempo, cb) => {
+  const notes = notesString.split(",");
+  let currentNote = 0;
+  let mousedown = new Event("mousedown");
+  let mouseup = new Event("mouseup");
+  let btn;
+
+  const interval = setInterval(() => {
+    if (currentNote < notes.length) {
+      if (notes[currentNote].trim() !== "") {
+        if (btn) {
+          btn.dispatchEvent(mouseup);
+        }
+
+        btn = document.querySelector(
+          `[data-letter-notes="${notes[currentNote].trim()}"]`
+        );
+        btn.dispatchEvent(mousedown);
+      }
+
+      currentNote++;
+    } else {
+      btn.dispatchEvent(mouseup);
+      clearInterval(interval);
+      cb();
+    }
+  }, 300 / tempo);
+};
+playBtn.addEventListener("mousedown", () => {
+  let tempo = +tempoSelect.value;
+  let songNum = +songSelect.value;
+  playBtn.disabled = true;
+  let enablePlayBtn = () => (playBtn.disabled = false);
+  switch (songNum) {
+    case 1:
+      playSong(jingleBells, tempo, enablePlayBtn);
+      break;
+    case 2:
+      playSong(happyBirthday, tempo, enablePlayBtn);
+      break;
+  }
+});
 
 const init = () => {
   for (let i = 1; i <= 5; i++) {
