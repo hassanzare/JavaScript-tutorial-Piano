@@ -93,25 +93,14 @@ document.addEventListener("keydown", (e) => {
     return;
   }
 
-  let lastLetter = e.code.substring(e.code.length - 1);
-  let isShiftPressed = e.shiftKey;
-  // console.log(lastLetter);
-  let selector;
-  if (isShiftPressed) {
-    selector = `[data-keyboard="⇧+${lastLetter}"]`;
-  } else {
-    selector = `[data-keyboard=${lastLetter}]`;
-  }
-  // console.log(selector);
-  let key = document.querySelector(selector);
-  // console.log(key);
-  if (key !== null) {
-    let mousedown = new Event("mousedown");
-    key.dispatchEvent(mousedown);
-  }
+  pressKey("mousedown", e);
 });
 
 document.addEventListener("keyup", (e) => {
+  pressKey("mouseup", e);
+});
+
+const pressKey = (mouseEvent, e) => {
   let lastLetter = e.code.substring(e.code.length - 1);
   let isShiftPressed = e.shiftKey;
   // console.log(lastLetter);
@@ -125,10 +114,10 @@ document.addEventListener("keyup", (e) => {
   let key = document.querySelector(selector);
   // console.log(key);
   if (key !== null) {
-    let mouseup = new Event("mouseup");
-    key.dispatchEvent(mouseup);
+    let event = new Event(mouseEvent);
+    key.dispatchEvent(event);
   }
-});
+};
 
 const playSound = (key) => {
   const audio = document.createElement("audio");
